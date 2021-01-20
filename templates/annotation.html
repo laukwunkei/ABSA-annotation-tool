@@ -1,0 +1,66 @@
+{%extends "bootstrap/base.html" %}
+
+{% block content %}
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+    <div class="container">
+        <h2 class="display-3">ABSA Sentiment Annotation Tool</h2>
+        <p>Your reliable tool for label annotation</p>
+        <p><a href="{{ url_for('restart')}}" type="button" class="btn btn-danger" > Restart</a></p>
+    </div>
+    </div>
+
+    <div class="container">
+        <h4>Target sentences: </h4>
+        <form class="form" method=POST action="{{ url_for('next') }}" class="form-group">
+          <p> You have processed <ins>{{num_sentences}}/{{list_size}}</ins> sentence so far </p>
+              <ul class="list-group">
+                <li class="list-group-item active">{{ all_sentences[0] }}</li>
+                <li class="list-group-item">{{ all_sentences[1] }}</li>
+                <li class="list-group-item">{{ all_sentences[2] }}</li>
+            </ul>
+            <button type="submit" class="btn btn-primary mb-2">Next sentence</button>
+          </form>
+
+
+        <h4>Auto-detected dependency: </h4>
+        <p> Please select the relevant dependency that will add to your output </p>
+        {% for i in extraction %}
+        <form class="form-inline" method=POST action="{{ url_for('add_auto') }}" class="form-group">
+            <div class="form-group mb-2">
+                <label for="sampledependency" class="sr-only">Dependency</label>
+                <input type="text" readonly class="form-control-plaintext" name="auto_dependency" value='{{i}}'>
+              </div>
+              <div class="form-group mx-sm-3 mb-2">
+                <label for="inputpolarity" class="sr-only">Polarity: -1/0/1</label>
+                <input type="text" class="form-control" name="auto_polarity" placeholder="Polarity">
+              </div>
+              <button type="submit" class="btn btn-primary mb-2">Add</button>
+          </form>
+        {% endfor %}
+
+        <h4> Hand-labelled dependency: </h4>
+        <p> Polarity categorisation: -1 (negative), 0 (positive), 1 (neutral) </p>
+        <form class="form-inline" method=POST action="{{ url_for('add_manual') }}" class="form-group">
+            <label class="sr-only" for="inlineFormInputName2">Aspect term</label>
+            <input type="text" class="form-control mb-2 mr-sm-2" name="manual_aspect_term" placeholder="Aspect term">
+          
+            <label class="sr-only" for="inlineFormInputGroupUsername2">Polarity term</label>
+            <input type="text" class="form-control" name="manual_polarity_term" placeholder="Polarity term">
+            
+            <label class="sr-only" for="inlineFormInputGroupUsername2">Polarity</label>
+            <input type="text" class="form-control" name="manual_polarity" placeholder="Polarity: -1/0/1">
+
+            <button type="submit" class="btn btn-primary mb-2">Add</button>
+          </form>
+        <br />
+
+        <p align="center"><a href=exit ><button class=grey style="height:75px;width:150px">exit</button></a></p>
+    </div>
+{% endblock %}
+
+
+
+
+

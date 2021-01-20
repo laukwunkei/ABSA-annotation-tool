@@ -1,0 +1,63 @@
+{%extends "bootstrap/base.html" %}
+
+{% block content %}
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="container">
+    <div class="jumbotron">
+        <h2 class="display-3">ABSA Sentiment Annotation Tool</h2>
+        <p>Your reliable tool for data labelling</p>
+        <p><a href="{{ url_for('restart')}}" type="button" class="btn btn-primary" > Restart</a></p>
+      </div>
+      
+
+      <div class="container">
+          <div class="main">
+              <div class="row">
+                <div class="col-md-8" style="background-color:#e7a247">
+                  <h3 style="color:#fff">Step 1: Upload your dataset</h3>
+                    <p style="color:#fff">This tool only accept <ins>txt</ins> format text data </p>
+                    <p style="color:#fff">Every sentence should either separate with punctuation or /n  </p>
+                      <form method=POST enctype=multipart/form-data action="{{ url_for('upload_data') }}" class="form-group">
+                        <div class="form-inline">
+                          <input type="file" name="data">
+                          <button type="submit" class="btn btn-primary mb-2">Upload</button>
+                        </div>
+                        </form>
+                          <h3 style="color:rgb(255, 255, 255)">Step 2: Upload output.json continue with your existing work</h3>
+                            <p style="color:#fff"> Skip this for new annotation </p>
+                        <form method=POST enctype=multipart/form-data action="{{ url_for('upload_output') }}" class="form-group">
+                        <div class="form-inline">
+                            <input type="file" name="output">
+                            <button type="submit" class="btn btn-primary mb-2">Upload</button>
+                        </div>
+                        </form> 
+                        <p>
+                            {% with messages = get_flashed_messages() %}
+                              {% if messages %}
+                             {% for message in messages %}
+                               <div class="alert alert-success">
+                                <strong>{{ message }}</strong>
+                              </div>
+                             {% endfor %}
+                              {% endif %}
+                            {% endwith %}
+                           </p>
+                    </br>
+                            <form method=POST action="{{ url_for('start_annotation') }}" class="form-group">  
+                                <div class="row text-center" style="padding-left: 20px;padding-right: 20px;">
+                                    <input type="submit" value="Start Annotation" class="btn btn-lg btn-block btn-success" style="border-radius: 50px">
+                                </div>
+                            </form>
+                      <br/>
+                      
+                </div>      
+                
+              </div>
+        
+      </div>
+      </div>
+      </div>
+ 
+
+{% endblock %}
