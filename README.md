@@ -3,7 +3,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/laukwunkei/ABSA-annotation-tool">
-    <img src="static/homepage.png" alt="Logo" width="80" height="80">
+    <img src="static/homepage.png" alt="Logo" width="300" height="300">
   </a>
 
   <h3 align="center">Aspect-based sentiment analysis annotation tool</h3>
