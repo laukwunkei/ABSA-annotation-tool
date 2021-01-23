@@ -14,31 +14,6 @@
 </p>
 
 
-<!-- TABLE OF CONTENTS -->
-<details open="open">
-  <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#builtwith">Built with</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
-  </ol>
-</details>
-
-
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
@@ -46,7 +21,7 @@
 
 * [Flask](Web application framework)
 * [Bootstrap](Front-end framework)
-* [Spacy](Language model for unsupervised term extraction)
+* [Spacy](Language model for unsupervised aspect term extraction)
 
 
 <!-- GETTING STARTED -->
@@ -69,25 +44,51 @@ This is an example of how to list things you need to use the software and how to
   pip install -r requirements.txt
   ```
 
+### Start a server
+* Run app.py
+    ```sh
+  python3 app.py
+  ```
+
+* Start a new terminal for parallel annotation (change xxxx to new combination)
+    ```sh
+  export FLASK_APP=app.py
+  flask run --host 0.0.0.0 --port xxxx
+  ```
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
 Data flow diagram:
+<br />
 <a href="https://github.com/laukwunkei/ABSA-annotation-tool">
-    <img src="static/annotation.png" alt="Logo" width="80" height="80">
+    <img src="static/annotation.png" alt="Logo" width="300" height="300">
   </a>
 
+### Restart
+* We recommend press **restart** whenever you start a new annotation to clean cache
+* This will redirect you to home page
+
 ### Input
-
-
+* New annotation: Upload <ins>.txt</ins> format dataset to database
+* Resume with existing annotation: Enter dataset name to resume where you stop from previous session
 
 ### Annotation process 
-
-
+* Auto-dependency detection
+* Manual dependency labelling 
 
 ### Output
+* Output file is named after dataset e.g. review.txt -> review_output.json
+Data structures:
+{"sentence":[{"aspectterm1, polarityterm1": sentiment},{"aspectterm2, polarityterm2": sentiment}]}
 
+Sample:
+{"I liked the aluminum body.": [], 
+"Lightweight and the screen is beautiful!": [{"screen, beautiful": "1"}, {"screen, lightweight": "1"}]}
+
+<!-- Testing EXAMPLES -->
+## Testing
+* Open multiple terminal and run test files in parallel 
 
 
 <!-- LICENSE -->
@@ -96,23 +97,12 @@ Data flow diagram:
 Distributed under the MIT License. See `LICENSE` for more information.
 
 
-
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email
+Louis Lau - [@email](z5265204@ad.unsw.edu.au) - email
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
-
-
-
-<!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
-
-* []()
-* []()
-* []()
-
+Project Link: [https://github.com/laukwunkei/ABSA-annotation-tool](https://github.com/laukwunkei/ABSA-annotation-tool)
 
 
 
