@@ -62,7 +62,7 @@ This is an example of how to list things you need to use the software and how to
 Data flow diagram:
 <br />
 <a href="https://github.com/laukwunkei/ABSA-annotation-tool">
-    <img src="static/annotation.png" alt="Logo" width="300" height="300">
+    <img src="static/annotation.png" alt="Logo" width="400" height="300">
   </a>
 
 ### Restart
@@ -79,12 +79,8 @@ Data flow diagram:
 
 ### Output
 * Output file is named after dataset e.g. review.txt -> review_output.json
-Data structures:
-{"sentence":[{"aspectterm1, polarityterm1": sentiment},{"aspectterm2, polarityterm2": sentiment}]}
-
-Sample:
-{"I liked the aluminum body.": [], 
-"Lightweight and the screen is beautiful!": [{"screen, beautiful": "1"}, {"screen, lightweight": "1"}]}
+* Data structures: {"sentence":[{"aspectterm1, polarityterm1": sentiment},{"aspectterm2, polarityterm2": sentiment}]}
+* Sample: {"I liked the aluminum body.": [], "Lightweight and the screen is beautiful!": [{"screen, beautiful": "1"}, {"screen, lightweight": "1"}]}
 
 <!-- Testing EXAMPLES -->
 ## Testing
@@ -96,13 +92,6 @@ Sample:
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
-
-<!-- CONTACT -->
-## Contact
-
-Louis Lau - [@email](z5265204@ad.unsw.edu.au) - email
-
-Project Link: [https://github.com/laukwunkei/ABSA-annotation-tool](https://github.com/laukwunkei/ABSA-annotation-tool)
 
 
 
@@ -121,3 +110,4 @@ Project Link: [https://github.com/laukwunkei/ABSA-annotation-tool](https://githu
 [license-url]: https://github.com/github_username/repo/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/github_username
+
