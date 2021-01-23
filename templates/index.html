@@ -1,0 +1,72 @@
+{%extends "bootstrap/base.html" %}
+
+{% block content %}
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="container">
+    <div class="jumbotron">
+        <h2 class="display-3">ABSA Sentiment Annotation Tool</h2>
+        <p>Your reliable tool for data labelling</p>
+        <p><a href="{{ url_for('restart')}}" type="button" class="btn btn-primary" > Restart</a></p>
+      </div>
+      
+
+      <div class="container">
+          <div class="main">
+              <div class="row">
+                <div class="col-md-8" style="background-color:#e7a247">
+                  <h3 style="color:#fff">New user: Upload dataset to start a new annotation</h3>
+                    <p style="color:#fff">This tool only accept <ins>txt</ins> format text data </p>
+                    <p style="color:#fff">Every sentence should either separate with punctuation or /n  </p>
+                      <form method=POST enctype=multipart/form-data action="{{ url_for('upload_data') }}" class="form-group">
+                        <div class="form-inline">
+                          <input type="file" name="data">
+                          <button type="submit" class="btn btn-primary mb-2">Upload</button>
+                        </div>
+                        </form>
+                </div>
+              </div>
+          </div>
+      </div>
+        </br>
+          <div class="container">
+            <div class="main">
+                <div class="row">
+                  <div class="col-md-8" style="background-color:#e7a247">
+                          <h3 style="color:rgb(255, 255, 255)">Existing user: Enter your previous annotation filename</h3>
+                            <p style="color:#fff"> E.g. Enter <ins>data</ins> if your dataset is <ins>data.txt</ins></p>
+                            <form class="form-inline" method=POST action="{{ url_for('upload_output') }}" class="form-group">
+                                <div class="form-group mx-sm-3 mb-2">
+                                  <label for="inputpolarity" class="sr-only"> dataset filename </label>
+                                  <input type="text" class="form-control" name="dataset" placeholder="dataset">
+                                </div>
+                                <button type="submit" class="btn btn-primary mb-2">Resume</button>
+                            </form> 
+                      <br/>
+                      
+                </div>      
+                
+              </div>
+        
+      </div>
+      </div>
+      <p>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+         {% for message in messages %}
+           <div class="alert alert-success">
+            <strong>{{ message }}</strong>
+          </div>
+         {% endfor %}
+          {% endif %}
+        {% endwith %}
+       </p>
+    </br>
+      <form method=POST action="{{ url_for('start_annotation') }}" class="form-group">  
+        <div class="row text-center" style="padding-left: 20px;padding-right: 20px;">
+            <input type="submit" value="Start Annotation" class="btn btn-lg btn-block btn-success" style="border-radius: 50px">
+        </div>
+    </form>
+ 
+
+{% endblock %}
