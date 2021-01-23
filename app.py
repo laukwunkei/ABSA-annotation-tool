@@ -7,6 +7,7 @@ from flask_uploads import UploadSet,configure_uploads,IMAGES,DATA,ALL
 import os 
 import sys
 import json
+import string
 from werkzeug.utils import secure_filename
 import spacy
 
@@ -176,6 +177,7 @@ def add_auto():
             data=myfile.read()
         data = json.loads(data)
         #update output files with new dependency
+        auto_dependency = auto_dependency.strip("()").replace("'","")
         pair = {auto_dependency: auto_polarity}
         last_sentence = list(data.keys())[-1]
         data[last_sentence].append(pair)
@@ -194,7 +196,7 @@ def add_manual():
             data=myfile.read()
         data = json.loads(data)
         #update output files with new dependency
-        dependacy = "({}, {})".format(manual_aspect_term, manual_polarity_term)
+        dependacy = "{}, {}".format(manual_aspect_term, manual_polarity_term)
         pair = {dependacy: manual_polarity}
         last_sentence = list(data.keys())[-1]
         data[last_sentence].append(pair)
