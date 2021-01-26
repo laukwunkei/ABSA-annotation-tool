@@ -23,10 +23,20 @@
                               {% endif %}
                             {% endwith %}
       <h2>Hope you find this annotation tool useful!</h2>
-      <p>Please tell us your user experience with this app to: z5265204@ad.unsw.edu.au</p>
+      <p><strong>Summary: </strong>You have annotated <ins>{{num_annotation}}</ins> sentences, compose of: </p>
+      <p>   - <ins>{{num_unsentiment}}</ins> sentences have no sentiment </p>
+      <p>   - <ins>{{num_neutral}}</ins> neutral dependency pair </p>
+      <p>   - <ins>{{num_pos}}</ins> positive dependency pair </p>
+      <p>   - <ins>{{num_negative}}</ins> negative dependency pair </p>
       <form method=POST action="{{ url_for('download') }}" class="form-group">
-        <input type="submit" value="Download output.json" onclick="myAnalyser()" class="btn btn-primary mb-2"> 
+        <input type="submit" value="Download output file" onclick="myAnalyser()" class="btn btn-primary mb-2"> 
     </form>
+    <form method=POST action="{{ url_for('restart') }}" class="form-group">
+      <input type="submit" style="background-color:#d1974a" value="Go to home page" onclick="myAnalyser()" class="btn btn-primary mb-2"> 
+  </form>
+    <form method=POST action="{{ url_for('clear') }}" class="form-group">
+      <input type="submit" style="background-color:#3eca90" value="Remove your file from database" onclick="myAnalyser()" class="btn btn-primary mb-2"> 
+  </form>
     </div>
   </body>
 
