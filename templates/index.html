@@ -7,7 +7,7 @@
     <div class="jumbotron">
         <h2 class="display-3">ABSA Sentiment Annotation Tool</h2>
         <p>Your reliable tool for data labelling</p>
-        <p><a href="{{ url_for('restart')}}" type="button" class="btn btn-primary" > Restart</a></p>
+        <p><a href="{{ url_for('restart')}}" type="button" class="btn btn-primary" > Refresh</a></p>
       </div>
       
 
@@ -17,7 +17,6 @@
                 <div class="col-md-8" style="background-color:#e7a247">
                   <h3 style="color:#fff">New user: Upload dataset to start a new annotation</h3>
                     <p style="color:#fff">This tool only accept <ins>txt</ins> format text data </p>
-                    <p style="color:#fff">Every sentence should either separate with punctuation or /n  </p>
                       <form method=POST enctype=multipart/form-data action="{{ url_for('upload_data') }}" class="form-group">
                         <div class="form-inline">
                           <input type="file" name="data">

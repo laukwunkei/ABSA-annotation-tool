@@ -77,6 +77,14 @@ def summary(data):
                     num_pos+=1
     return num_unsentiment,num_neutral,num_pos,num_negative
 
+def txt_to_list(path):
+    sentences = []
+    with open(path, "r") as a_file:
+        for line in a_file:
+            stripped_line = line.strip()
+            sentences.append(stripped_line)
+    return sentences
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -100,7 +108,7 @@ def upload_data():
             path = './data/' + foldername +  '/'
             # Flash error: File exists already
             if os.path.exists(path):
-                flash("Dataset {} has already exist. Rename your file to procceed.".format(foldername))
+                flash("Dataset {} has already exist. Enter your file name to resume.".format(foldername))
                 return redirect('/')
             session['foldername'] = foldername
             path = './data/' + foldername +  '/'
@@ -138,9 +146,8 @@ def start_annotation():
     # Existing annotation
     if count_uploadfile(folderpath) == 2:
         filename = findfilebyformat(folderpath, '.txt')
-        text_file = open(folderpath + filename, "r").read()
-        nlp_file_doc = nlp(text_file)
-        all_sentences = list(nlp_file_doc.sents)
+        path = folderpath + filename
+        all_sentences = txt_to_list(path)
         list_size = len(all_sentences)
         session["list_size"] = list_size
         output_file = findfilebyformat(folderpath, '.json')
@@ -156,7 +163,7 @@ def start_annotation():
             return render_template('index.html')
         session["num_sentences"] = num_sentences
         all_sentences = all_sentences[num_sentences:]
-        first_sentence = all_sentences[0].text
+        first_sentence = all_sentences[0]
         data[first_sentence] = []
         with open(output_path, 'w') as f:
             f.write(json.dumps(data))
@@ -165,12 +172,11 @@ def start_annotation():
     if count_uploadfile(folderpath) == 1:
         num_sentences = 0
         filename = session.get("filename_data", None)
-        text_file = open((folderpath + filename), "r").read()
-        nlp_file_doc = nlp(text_file)
-        all_sentences = list(nlp_file_doc.sents)
+        path = folderpath + filename
+        all_sentences = txt_to_list(path)
         list_size = len(all_sentences)
         session["list_size"] = list_size
-        first_sentence = all_sentences[0].text
+        first_sentence = all_sentences[0]
         session["num_sentences"] = num_sentences
         data = {first_sentence:[]}
         output_path = folderpath + filename.split('.tx')[0] + "_output.json"
@@ -237,11 +243,10 @@ def next():
     session["num_sentences"] = num_sentences
 
     # Update output with next sentence
-    text_file = open(foldername + dataname, "r").read()
-    nlp_file_doc = nlp(text_file)
-    all_sentences = list(nlp_file_doc.sents)
+    path = foldername + dataname
+    all_sentences = txt_to_list(path)
     all_sentences = all_sentences[num_sentences:]
-    first_sentence = all_sentences[0].text
+    first_sentence = all_sentences[0]
 
     output_path = session.get("output_path", None)
     with open(output_path, 'r') as f:
@@ -276,12 +281,13 @@ def restart():
     session.clear()
     return render_template('index.html')
 
+'''
 @app.route('/clear', methods=['POST','GET'])
 def clear():
     folderpath = session.get("folderpath", None)
     deleteDir(folderpath)
     return render_template('index.html')
-
+'''
 if __name__ == '__main__': 
     app.run(debug=True, threaded=True)
 

@@ -11,7 +11,7 @@
   </head>
   <body>
     <div class="container">
-      <img src="../static/AU_LOGO.png" alt="" class="logo" />
+      <img src="../static/thankyou.jpg" alt="" class="logo" />
     </br> 
       {% with messages = get_flashed_messages() %}
                               {% if messages %}
@@ -22,7 +22,7 @@
                              {% endfor %}
                               {% endif %}
                             {% endwith %}
-      <h2>Hope you find this annotation tool useful!</h2>
+      <h2>Thanks for your contribution!</h2>
       <p><strong>Summary: </strong>You have annotated <ins>{{num_annotation}}</ins> sentences, compose of: </p>
       <p>   - <ins>{{num_unsentiment}}</ins> sentences have no sentiment </p>
       <p>   - <ins>{{num_neutral}}</ins> neutral dependency pair </p>
@@ -33,10 +33,6 @@
     </form>
     <form method=POST action="{{ url_for('restart') }}" class="form-group">
       <input type="submit" style="background-color:#d1974a" value="Go to home page" onclick="myAnalyser()" class="btn btn-primary mb-2"> 
-  </form>
-    <form method=POST action="{{ url_for('clear') }}" class="form-group">
-      <input type="submit" style="background-color:#3eca90" value="Remove your file from database" onclick="myAnalyser()" class="btn btn-primary mb-2"> 
-  </form>
     </div>
   </body>
 
