@@ -36,6 +36,10 @@
                 <label for="inputpolarity" class="sr-only">Polarity: -1/0/1</label>
                 <input type="text" class="form-control" name="auto_polarity" placeholder="Polarity">
               </div>
+              <div class="form-group mx-sm-3 mb-2">
+                <label for="inputcategory" class="sr-only">Category</label>
+                <input type="text" class="form-control" name="inputcategory" placeholder="Category">
+              </div>
               <button type="submit" class="btn btn-primary mb-2">Add</button>
           </form>
         {% endfor %}
@@ -51,6 +55,9 @@
             
             <label class="sr-only" for="inlineFormInputGroupUsername2">Polarity</label>
             <input type="text" class="form-control" name="manual_polarity" placeholder="Polarity: -1/0/1">
+
+            <label for="inputcategory" class="sr-only">Category</label>
+            <input type="text" class="form-control" name="inputcategory" placeholder="Category">
 
             <button type="submit" class="btn btn-primary mb-2">Add</button>
           </form>

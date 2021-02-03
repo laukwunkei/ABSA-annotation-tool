@@ -196,13 +196,14 @@ def add_auto():
     if request.method == 'POST':
         auto_dependency = request.form['auto_dependency']
         auto_polarity = request.form['auto_polarity']
+        auto_category = request.form['inputcategory']
         output_path = session.get("output_path", None)
         with open(output_path, 'r') as myfile:
             data=myfile.read()
         data = json.loads(data)
         #update output files with new dependency
         auto_dependency = auto_dependency.strip("()").replace("'","")
-        pair = {auto_dependency: auto_polarity}
+        pair = {auto_dependency: [auto_polarity, auto_category]}
         last_sentence = list(data.keys())[-1]
         data[last_sentence].append(pair)
         with open(output_path, "w") as write_file:
@@ -215,13 +216,14 @@ def add_manual():
         manual_aspect_term = request.form['manual_aspect_term']
         manual_polarity_term = request.form['manual_polarity_term']
         manual_polarity = request.form['manual_polarity']
+        auto_category = request.form['inputcategory']
         output_path = session.get("output_path", None)
         with open(output_path, 'r') as myfile:
             data=myfile.read()
         data = json.loads(data)
         #update output files with new dependency
         dependacy = "{}, {}".format(manual_aspect_term, manual_polarity_term)
-        pair = {dependacy: manual_polarity}
+        pair = {dependacy: [manual_polarity, auto_category]}
         last_sentence = list(data.keys())[-1]
         data[last_sentence].append(pair)
         with open(output_path, "w") as write_file:
